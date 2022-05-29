@@ -17,10 +17,14 @@ export default function App() {
 
   return (
     <>
-    <div className='flex flex-row'>
-      <Navbar buttonRef={buttonRef} setShowChatModal={setShowChatModal} showChatModal={showChatModal} dropdownRef={dropdownRef} showDropdown={showDropdown} setShowDropDown={setShowDropdown}/>
-      {showDropdown&& <Dropdown dropdownRef={dropdownRef}/>}
-      {showChatModal&&<ChatModal buttonRef={buttonRef} modalRef={modalRef} setShowChatModal={setShowChatModal}/>}
+    <div className='flex justify-between items-end'>
+      <div className='flex flex-row'>
+        <Navbar buttonRef={buttonRef} setShowChatModal={setShowChatModal} showChatModal={showChatModal} dropdownRef={dropdownRef} showDropdown={showDropdown} setShowDropDown={setShowDropdown}/>
+        {showDropdown&& <Dropdown dropdownRef={dropdownRef}/>}
+      </div>
+      <div className=''>
+        {showChatModal&&<ChatModal buttonRef={buttonRef} modalRef={modalRef} setShowChatModal={setShowChatModal}/>}
+      </div>
     </div>
     <Router>
       <Routes>
