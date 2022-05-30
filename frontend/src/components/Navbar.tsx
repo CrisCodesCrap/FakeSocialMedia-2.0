@@ -11,9 +11,11 @@ interface NavbarProps {
     showChatModal: boolean
     setShowChatModal: React.Dispatch<React.SetStateAction<boolean>>
     buttonRef: React.MutableRefObject<any>
+    closedCreatePostModal: boolean
+    setCloseCreatePostModal: React.Dispatch<React.SetStateAction<boolean>>
 }
 
-export default function Navbar({ showDropdown, setShowDropDown, dropdownRef, showChatModal, setShowChatModal, buttonRef}:NavbarProps) {
+export default function Navbar({ closedCreatePostModal, setCloseCreatePostModal,showDropdown, setShowDropDown, dropdownRef, showChatModal, setShowChatModal, buttonRef}:NavbarProps) {
     
     const notificationsButton = useRef<any>(null)
     const searchButton = useRef<any>(null)
@@ -36,7 +38,7 @@ export default function Navbar({ showDropdown, setShowDropDown, dropdownRef, sho
                     <UserIcon/>
                     <Icon useType={1} tooltip={'Home'} icon={<FaHome className='w-6 h-6'/>}/>
                     <Icon useType={2} showDropdown={showDropdown} setShowDropDown={setShowDropDown} refName={notificationsButton} tooltip={'Notifications'} icon={<FaBell className='w-5 h-5'/>}/>
-                    <Icon useType={3} tooltip={'Add a post'} icon={<FaPlus className='w-5 h-5'/>}/>
+                    <Icon useType={3} setCloseCreatePostModal={setCloseCreatePostModal} closedCreatePostModal={closedCreatePostModal} tooltip={'Add a post'} icon={<FaPlus className='w-5 h-5'/>}/>
                     <Icon useType={4} showChatModal={showChatModal} setShowChatModal={setShowChatModal} refName={buttonRef} tooltip={'Messages'} icon={<FaComment className='w-5 h-5'/>}/>
                     <Icon useType={2} showDropdown={showDropdown} setShowDropDown={setShowDropDown} refName={searchButton} tooltip={'Search for a user or a post'} icon={<FaSearch className='w-5 h-5'/>}/>
                     <div className='flex justify-end items-center flex-col cursor-pointer'>

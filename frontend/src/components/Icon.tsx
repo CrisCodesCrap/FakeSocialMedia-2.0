@@ -9,10 +9,13 @@ interface IconProps {
     icon: JSX.Element
     useType: number
     showChatModal?: boolean
-    setShowChatModal?: React.Dispatch<React.SetStateAction<boolean>>          	
+    onClick?:Function
+    setShowChatModal?: React.Dispatch<React.SetStateAction<boolean>>     	
+    closedCreatePostModal?: boolean
+    setCloseCreatePostModal?: React.Dispatch<React.SetStateAction<boolean>>
 }
 
-export default function Icon({icon, showDropdown, refName, setShowDropDown, tooltip, useType,setShowChatModal,showChatModal}:IconProps) {
+export default function Icon({icon, showDropdown, refName, setShowDropDown, tooltip, useType,setShowChatModal,showChatModal, closedCreatePostModal, setCloseCreatePostModal}:IconProps) {
     
     const [showToolTip, setShowToolTip] = useState(false)
 
@@ -34,7 +37,13 @@ export default function Icon({icon, showDropdown, refName, setShowDropDown, tool
         setShowToolTip(false)
     }
 
+    function handleAddPostModal(){
+        setCloseCreatePostModal !== undefined && setCloseCreatePostModal(!closedCreatePostModal)
+        console.log(closedCreatePostModal)
+    }
+
     function handleClickEvent(e:any){
+        e.preventDefault()
         if(useType===1){
             return
         }    
@@ -42,7 +51,7 @@ export default function Icon({icon, showDropdown, refName, setShowDropDown, tool
             handleClickEventDropdown()
         }
         else if(useType===3){
-            return
+            handleAddPostModal()
         }
         else if(useType===4){
             handleClickEventModal()
@@ -54,7 +63,7 @@ export default function Icon({icon, showDropdown, refName, setShowDropDown, tool
     }
     return ( 
         <div className='inline-flex flex-col justify-center'>
-            <div onClick={handleClickEvent} ref={refName} onMouseEnter={()=>handleHoverEvent(true)} onMouseLeave={()=>handleHoverEvent(false)}  className="duration-500 rounded-full w-11 h-11 m-2 hover:scale-105 hover:bg-white hover:text-blue-700 bg-blue-700 flex shadow-xl justify-center items-center text-white cursor-pointer">
+            <div onClick={handleClickEvent} ref={refName} onMouseEnter={()=>handleHoverEvent(true)} onMouseLeave={()=>handleHoverEvent(false)}  className="duration-500 rounded-full w-11 h-11 m-2 z-0 hover:scale-105 hover:bg-white hover:text-blue-700 bg-blue-700 flex shadow-xl justify-center items-center text-white cursor-pointer">
                 {icon}
             </div>
             {showToolTip&&<Tooltip margin={5} text={tooltip}/>}

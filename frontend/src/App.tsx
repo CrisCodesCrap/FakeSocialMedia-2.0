@@ -6,11 +6,13 @@ import Navbar from './components/Navbar'
 import Dropdown from './components/Dropdown'
 import { useRef, useState } from 'react'
 import ChatModal from './components/ChatModal'
+import CreatePostModal from './components/CreatePostModal'
 
 export default function App() {
   
   const [showDropdown, setShowDropdown] = useState<boolean>(false)
   const [showChatModal, setShowChatModal] = useState<boolean>(false)
+  const [closedCreatePostModal, setCloseCreatePostModal] = useState<boolean>(false)
   const dropdownRef = useRef<any>(null)
   const modalRef = useRef<any>(null)
   const buttonRef = useRef<any>(null)
@@ -18,8 +20,9 @@ export default function App() {
   return (
     <>
     <div className='flex justify-between items-end'>
+    {closedCreatePostModal&&<CreatePostModal setCloseCreatePostModal={setCloseCreatePostModal} closedCreatePostModal={closedCreatePostModal}/>}
       <div className='flex flex-row'>
-        <Navbar buttonRef={buttonRef} setShowChatModal={setShowChatModal} showChatModal={showChatModal} dropdownRef={dropdownRef} showDropdown={showDropdown} setShowDropDown={setShowDropdown}/>
+        <Navbar closedCreatePostModal={closedCreatePostModal} setCloseCreatePostModal={setCloseCreatePostModal} buttonRef={buttonRef} setShowChatModal={setShowChatModal} showChatModal={showChatModal} dropdownRef={dropdownRef} showDropdown={showDropdown} setShowDropDown={setShowDropdown}/>
         {showDropdown&& <Dropdown dropdownRef={dropdownRef}/>}
       </div>
       <div className=''>

@@ -1,6 +1,6 @@
-import { useState,useRef, useEffect } from "react"
+import { useState, useRef, useEffect } from "react"
 import Tooltip from "./Tooltip"
-import {FaCog, FaSmile, FaTimes} from 'react-icons/fa'
+import {FaCog, FaPaperPlane, FaRegFileImage, FaSmile, FaTimes} from 'react-icons/fa'
 import Message from "./Message"
 import MessageIcon from "./MessageIcon"
 
@@ -20,6 +20,7 @@ export default function ChatModal({setShowChatModal,modalRef,buttonRef}:ModalPro
     const [showNameTooltip, setshowNameTooltip] = useState<boolean>(false)
     const [isSettingsMode, setIsSettingsMode] = useState<boolean>(false)
     const [messages, updateMessages] = useState<object[]>([])
+    const [currentMessage, setCurrentMessage] = useState<string>("")
 
     let height:number = window.innerHeight / 2
     function handleHoverEvent(hoverIn:boolean,type:number){
@@ -42,6 +43,11 @@ export default function ChatModal({setShowChatModal,modalRef,buttonRef}:ModalPro
             setshowNameTooltip(false)
         }
     
+    }
+
+    function handleWriteMessage(e:any){
+        e.preventDefault()
+        setCurrentMessage(e.target.value)
     }
 
     function handleWindowClick(e:any){
@@ -92,11 +98,12 @@ export default function ChatModal({setShowChatModal,modalRef,buttonRef}:ModalPro
             </ul>
             <div className="flex items-center justify-between w-full h-12">
                 <div>
-                    <MessageIcon icon={<FaSmile className="w-6 h-6 text-blue-500 "/>} onClick={()=>console.log(123123)} tooltip={'zdr, bepce kp?'}/>
+                    <MessageIcon  icon={<FaSmile style={{color:isFocused?'#3b82f6':'#9ca3af'}} className="w-6 h-6 text-blue-500"/>} onClick={()=>console.log(123123) /* Implement onClick here: */} tooltip={'Select an emoji'} margin={3}/>
+                    <MessageIcon icon={<FaRegFileImage style={{color:isFocused?'#3b82f6':'#9ca3af'}} className="w-6 h-6 text-blue-500"/>} onClick={()=>console.log(123123) /* Implement onClick here: */} tooltip={'Add an image or drag it in the window'} margin={1}/>
                 </div>
-                <div>
-                    <input className="w-48 h-12 p-2 m-3 rounded-3xl" placeholder="Type your message here"/>
-
+                <div className="flex items-center">
+                    <input onChange={(e:any)=>handleWriteMessage(e)} value={currentMessage} className="w-56 h-8 p-2 m-3 rounded-3xl outline-none" placeholder="Type your message here."/>
+                    <MessageIcon icon={<FaPaperPlane style={{color:isFocused?'#3b82f6':'#9ca3af'}} className="w-6 h-6 text-blue-500"/>} onClick={()=>console.log(123123) /* Implement onClick here: */} tooltip={'Send the message'} margin={4}/> 
                 </div>
             </div>
             </div>

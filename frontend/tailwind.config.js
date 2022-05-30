@@ -10,7 +10,12 @@ module.exports = {
             height: {
                 '112': '28rem',
                 '84': '21rem',
+                '1/8': '12.5%',
+            },
+            maxWidth: {
+                '2/3': '66%',
             }
+
         },
         plugins: [],
     }
