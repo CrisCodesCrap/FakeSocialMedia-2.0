@@ -19,8 +19,8 @@ export default function App() {
 
   return (
     <>
-    <div className='flex justify-between items-end'>
     {closedCreatePostModal&&<CreatePostModal setCloseCreatePostModal={setCloseCreatePostModal} closedCreatePostModal={closedCreatePostModal}/>}
+    <div className='flex justify-between items-end'>
       <div className='flex flex-row'>
         <Navbar closedCreatePostModal={closedCreatePostModal} setCloseCreatePostModal={setCloseCreatePostModal} buttonRef={buttonRef} setShowChatModal={setShowChatModal} showChatModal={showChatModal} dropdownRef={dropdownRef} showDropdown={showDropdown} setShowDropDown={setShowDropdown}/>
         {showDropdown&& <Dropdown dropdownRef={dropdownRef}/>}

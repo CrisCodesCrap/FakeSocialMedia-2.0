@@ -67,7 +67,7 @@ export default function ChatModal({setShowChatModal,modalRef,buttonRef}:ModalPro
     },[])
     
     return ( 
-        <div ref={modalRef} className="flex justify-center items-start h-112 w-96 overflow-hidden rounded-t-2xl shadow-allaround mx-24 bg-white">
+        <div ref={modalRef} className="flex justify-center items-start h-112 w-96 overflow-hidden rounded-t-2xl shadow-allaround lg:mx-24 md:mx-12 sm:mx-4 bg-white">
             <div className="inline-flex flex-col w-full">
             <div style={{background:!isFocused?'linear-gradient(to left top, rgb(107, 114, 128), rgb(148, 163, 184))':undefined}} className="bg-gradient-to-br from-sky-500 to-blue-600 h-16 w-full shadow-allaround rounded-t-2xl flex justify-between items-center">
                 <div className="inline-flex justify-center items-center text-white">
