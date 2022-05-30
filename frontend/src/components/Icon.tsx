@@ -63,7 +63,7 @@ export default function Icon({icon, showDropdown, refName, setShowDropDown, tool
     }
     return ( 
         <div className='inline-flex flex-col justify-center'>
-            <div onClick={handleClickEvent} ref={refName} onMouseEnter={()=>handleHoverEvent(true)} onMouseLeave={()=>handleHoverEvent(false)}  className="duration-500 rounded-full w-11 h-11 m-2 z-0 hover:scale-105 hover:bg-white hover:text-blue-700 bg-blue-700 flex shadow-xl justify-center items-center text-white cursor-pointer">
+            <div onClick={handleClickEvent} ref={refName} onMouseEnter={()=>handleHoverEvent(true)} onMouseLeave={()=>handleHoverEvent(false)}  className="duration-200 rounded-full w-11 h-11 m-2 z-0 hover:bg-white hover:text-blue-700 bg-blue-700 flex shadow-xl justify-center items-center text-white cursor-pointer">
                 {icon}
             </div>
             {showToolTip&&<Tooltip margin={5} text={tooltip}/>}
