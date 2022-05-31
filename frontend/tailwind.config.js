@@ -20,6 +20,9 @@ module.exports = {
             },
             maxWidth: {
                 '2/3': '66%',
+            },
+            backgroundColor: {
+                'onedark': '#2c313a'
             }
 
         },
