@@ -39,7 +39,6 @@ export default function Icon({icon, showDropdown, refName, setShowDropDown, tool
 
     function handleAddPostModal(){
         setCloseCreatePostModal !== undefined && setCloseCreatePostModal(!closedCreatePostModal)
-        console.log(closedCreatePostModal)
     }
 
     function handleClickEvent(e:any){
