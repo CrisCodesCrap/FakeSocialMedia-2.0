@@ -1,4 +1,4 @@
-import { useState } from "react"
+import { useEffect, useState } from "react"
 import { FaTimes } from "react-icons/fa"
 import Icon from "./Icon"
 import RadioButton from "./RadioButton"
@@ -12,11 +12,24 @@ interface CreatePostModalProps {
 
 export default function CreatePostModal({setCloseCreatePostModal, closedCreatePostModal}:CreatePostModalProps) {
     
+    const [{height, width}, setSize] = useState({height: 0, width: 0})
+
+    useEffect(() => {
+        const resize = () => {
+            setSize({height: window.innerHeight, width: window.innerWidth})
+        }
+        resize()
+        window.addEventListener('resize', resize)
+        return () => window.removeEventListener('resize', resize)
+    },[])
+    
     const [chosenButton, setChosenButton] = useState<string>("")
+
+    const [inputValue, setInputValue] = useState<string>("")
 
     return ( 
         <>
-        <div className="absolute flex items-center justify-center bg-black z-10 opacity-90 w-screen h-screen "/>
+        <div style={{width:width, height:height}} className="absolute flex items-center justify-center bg-black z-10 opacity-90"/>
         <div className="flex absolute items-center justify-center w-screen h-screen ">
             <div className=" rounded-lg inline-flex flex-col items-center justify-start w-180 h-2/3 bg-white z-10">
                 <div className="flex rounded-t-lg items-center justify-between bg-blue-500 w-full h-1/8">
@@ -32,9 +45,9 @@ export default function CreatePostModal({setCloseCreatePostModal, closedCreatePo
                     <div className="inline-flex flex-row items-center justify-center">
                         <RadioButton name="Picture" chosenButton={chosenButton} setChosenButton={setChosenButton}/>
                         <RadioButton name="Status" chosenButton={chosenButton} setChosenButton={setChosenButton}/>
-                        <RadioButton name="Code snippet" chosenButton={chosenButton} setChosenButton={setChosenButton}/>
+                        <RadioButton name="Thread" chosenButton={chosenButton} setChosenButton={setChosenButton}/>
                     </div>
-                    <Input/>
+                    <Input inputValue={inputValue} setInputValue={setInputValue} type={chosenButton}/>
                 </div>
             </div>
         </div>
