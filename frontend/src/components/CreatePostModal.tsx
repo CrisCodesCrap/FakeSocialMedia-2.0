@@ -2,8 +2,9 @@ import { useEffect, useState } from "react"
 import { FaTimes } from "react-icons/fa"
 import Icon from "./Icon"
 import RadioButton from "./RadioButton"
-import svg from './pic.svg'
-import Input from "./Input"
+import InputStageOne from "./InputStageOne"
+import InputStageTwo from "./InputStageTwo"
+import ContinueButton from "./ContinueButton"
 
 interface CreatePostModalProps {
     closedCreatePostModal: boolean
@@ -24,9 +25,9 @@ export default function CreatePostModal({setCloseCreatePostModal, closedCreatePo
     },[])
     
     const [chosenButton, setChosenButton] = useState<string>("")
-
+    const [droppedImages, setDroppedImages] = useState<any[]>([])
     const [inputValue, setInputValue] = useState<string>("")
-
+    const [stageOfPost, setStageOfPost] = useState<number>()
     return ( 
         <>
         <div style={{width:width, height:height}} className="absolute flex items-center justify-center bg-black z-10 opacity-90"/>
@@ -47,8 +48,10 @@ export default function CreatePostModal({setCloseCreatePostModal, closedCreatePo
                         <RadioButton name="Status" chosenButton={chosenButton} setChosenButton={setChosenButton}/>
                         <RadioButton name="Thread" chosenButton={chosenButton} setChosenButton={setChosenButton}/>
                     </div>
-                    <Input inputValue={inputValue} setInputValue={setInputValue} type={chosenButton}/>
+                    <InputStageOne droppedImages={droppedImages} setDroppedImages={setDroppedImages} inputValue={inputValue} setInputValue={setInputValue} type={chosenButton}/>
+                    <InputStageTwo droppedImages={droppedImages} setDroppedImages={setDroppedImages} inputValue={inputValue} setInputValue={setInputValue} type={chosenButton}/>
                 </div>
+                <ContinueButton inputValue={inputValue} setCloseCreatePostModal={setCloseCreatePostModal} droppedImages={droppedImages}/>
             </div>
         </div>
         </>
