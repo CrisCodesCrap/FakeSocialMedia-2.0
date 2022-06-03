@@ -27,7 +27,7 @@ export default function CreatePostModal({setCloseCreatePostModal, closedCreatePo
     const [chosenButton, setChosenButton] = useState<string>("")
     const [droppedImages, setDroppedImages] = useState<any[]>([])
     const [inputValue, setInputValue] = useState<string>("")
-    const [stageOfPost, setStageOfPost] = useState<number>()
+    const [stageOfPost, setStageOfPost] = useState<number>(1)
     return ( 
         <>
         <div style={{width:width, height:height}} className="absolute flex items-center justify-center bg-black z-10 opacity-90"/>
@@ -40,18 +40,22 @@ export default function CreatePostModal({setCloseCreatePostModal, closedCreatePo
                     <Icon useType={3} setCloseCreatePostModal={setCloseCreatePostModal} closedCreatePostModal={closedCreatePostModal}  icon={<FaTimes className='w-5 h-5'/>} tooltip={'Close the window'}/>
                 </div>
                 <div className="inline-flex flex-col items-center justify-start w-full h-7/8">
-                    <div className="text-blue-500 font-semibold ml-2 my-6">
-                        You want to post a
-                    </div>
-                    <div className="inline-flex flex-row items-center justify-center">
-                        <RadioButton name="Picture" chosenButton={chosenButton} setChosenButton={setChosenButton}/>
-                        <RadioButton name="Status" chosenButton={chosenButton} setChosenButton={setChosenButton}/>
-                        <RadioButton name="Thread" chosenButton={chosenButton} setChosenButton={setChosenButton}/>
-                    </div>
-                    <InputStageOne droppedImages={droppedImages} setDroppedImages={setDroppedImages} inputValue={inputValue} setInputValue={setInputValue} type={chosenButton}/>
-                    <InputStageTwo droppedImages={droppedImages} setDroppedImages={setDroppedImages} inputValue={inputValue} setInputValue={setInputValue} type={chosenButton}/>
+                    {stageOfPost===1&&
+                    <>
+                        <div className="text-blue-500 font-semibold ml-2 my-6">
+                            You want to post a
+                        </div>
+                        <div className="inline-flex flex-row items-center justify-center">
+                            <RadioButton name="Picture" chosenButton={chosenButton} setChosenButton={setChosenButton}/>
+                            <RadioButton name="Status" chosenButton={chosenButton} setChosenButton={setChosenButton}/>
+                            <RadioButton name="Thread" chosenButton={chosenButton} setChosenButton={setChosenButton}/>
+                        </div>
+                    </>
+                    }
+                    {stageOfPost===1&&<InputStageOne droppedImages={droppedImages} setDroppedImages={setDroppedImages} inputValue={inputValue} setInputValue={setInputValue} type={chosenButton}/>}
+                    {stageOfPost===2&&<InputStageTwo droppedImages={droppedImages} setDroppedImages={setDroppedImages} inputValue={inputValue} setInputValue={setInputValue} type={chosenButton}/>}
                 </div>
-                <ContinueButton inputValue={inputValue} setCloseCreatePostModal={setCloseCreatePostModal} droppedImages={droppedImages}/>
+                <ContinueButton stageOfPost={stageOfPost} setStageOfPost={setStageOfPost} inputValue={inputValue} setCloseCreatePostModal={setCloseCreatePostModal} droppedImages={droppedImages}/>
             </div>
         </div>
         </>

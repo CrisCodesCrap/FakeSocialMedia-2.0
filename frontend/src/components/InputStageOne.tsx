@@ -26,7 +26,7 @@ export default function InputStageOne({length, setInputValue, type, inputValue,d
                     <CodeMirror
                         height='14rem'                   
                         theme={oneDark}
-                        className='min-h-56 min-w-full h-56 max-h-56 max-w-full overflow-y-auto rounded-lg'
+                        className='min-h-56 min-w-full h-56 max-h-56 max-w-full  rounded-lg'
                         extensions={[markdown({ base: markdownLanguage, codeLanguages: languages })]}                        
                         onChange={(value, viewUpdate) => {
                             /* Store it in a hook or something */
@@ -44,7 +44,7 @@ export default function InputStageOne({length, setInputValue, type, inputValue,d
                     <div className="w-full h-8 flex justify-start items-center">
                         <div className="flex justify-center items-center w-full h-8 rounded-full bg-onedark text-white font-semibold select-none">Status <FaSmile className='m-2'/></div>
                     </div>
-                    <div suppressContentEditableWarning={true} contentEditable={true} className="w-144 h-56 min-h-56 min-w-144 max-h-56 max-w-144 outline-none text-white" data-placeholder="Say what's on your mind..">{inputValue}</div>
+                    <div suppressContentEditableWarning={true} contentEditable={true} className="w-full h-56 min-h-56 min-w-full max-h-56 max-w-full outline-none overflow-y-auto overflow-hidden text-white" data-placeholder="Say what's on your mind..">{inputValue}</div>
                 </div>
             </>
         )

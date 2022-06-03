@@ -1,16 +1,24 @@
 interface ContinueButtonProps {
     setCloseCreatePostModal: React.Dispatch<React.SetStateAction<boolean>>
     inputValue: string
+    setStageOfPost: React.Dispatch<React.SetStateAction<number>>
+    stageOfPost: number
     droppedImages: any[]
 }
 
-export default function ContinueButton({setCloseCreatePostModal, inputValue, droppedImages}:ContinueButtonProps) {
+export default function ContinueButton({setCloseCreatePostModal, inputValue, droppedImages,setStageOfPost,stageOfPost}:ContinueButtonProps) {
     return ( 
         // add checking for the dropped images aswell
         <div 
             onClick={() => {
                 if(inputValue.length> 0 || droppedImages.length > 0){
-                    setCloseCreatePostModal(false)        
+                    if(stageOfPost === 1){
+                        setStageOfPost(2)
+                    }else if(stageOfPost === 2){
+                        setStageOfPost(3)
+                    }else if(stageOfPost === 3){
+                        /*implement post submit logic here: */
+                    }
                     }
                 }
             }
