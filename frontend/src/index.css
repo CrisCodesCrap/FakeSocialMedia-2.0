@@ -45,3 +45,24 @@
 #editor ::-webkit-scrollbar {
     height: 5px;
 }
+
+#headingholder ::-webkit-scrollbar {
+    height: 5px;
+}
+
+#headingholder ::-webkit-scrollbar-track {
+    background-color: #001d54;
+    scrollbar-width: 1px;
+    height: 1px;
+    width: 1px;
+    cursor: pointer;
+    border-bottom-right-radius: 10px;
+}
+
+#editor ::-webkit-scrollbar-thumb {
+    background-color: #06067f;
+    border-radius: 10px;
+    scrollbar-width: 1px;
+    width: 1px;
+    cursor: pointer;
+}

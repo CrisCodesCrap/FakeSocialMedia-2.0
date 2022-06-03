@@ -28,11 +28,12 @@ export default function CreatePostModal({setCloseCreatePostModal, closedCreatePo
     const [droppedImages, setDroppedImages] = useState<any[]>([])
     const [inputValue, setInputValue] = useState<string>("")
     const [stageOfPost, setStageOfPost] = useState<number>(1)
+    const [heading, setHeading] = useState<string>("")
     return ( 
         <>
         <div style={{width:width, height:height}} className="absolute flex items-center justify-center bg-black z-10 opacity-90"/>
         <div className="flex absolute items-center justify-center w-screen h-screen ">
-            <div className=" rounded-lg inline-flex flex-col items-center justify-start w-180 h-2/3 bg-white z-10">
+            <div className=" rounded-lg inline-flex flex-col items-end justify-start w-180 h-2/3 bg-white z-10">
                 <div className="flex rounded-t-lg items-center justify-between bg-blue-500 w-full h-1/8">
                     <div className="m-4 text-white font-semibold">
                         Header
@@ -53,7 +54,7 @@ export default function CreatePostModal({setCloseCreatePostModal, closedCreatePo
                     </>
                     }
                     {stageOfPost===1&&<InputStageOne droppedImages={droppedImages} setDroppedImages={setDroppedImages} inputValue={inputValue} setInputValue={setInputValue} type={chosenButton}/>}
-                    {stageOfPost===2&&<InputStageTwo droppedImages={droppedImages} setDroppedImages={setDroppedImages} inputValue={inputValue} setInputValue={setInputValue} type={chosenButton}/>}
+                    {stageOfPost===2&&<InputStageTwo heading={heading} setHeading={setHeading} droppedImages={droppedImages} setDroppedImages={setDroppedImages} inputValue={inputValue} setInputValue={setInputValue} type={chosenButton}/>}
                 </div>
                 <ContinueButton stageOfPost={stageOfPost} setStageOfPost={setStageOfPost} inputValue={inputValue} setCloseCreatePostModal={setCloseCreatePostModal} droppedImages={droppedImages}/>
             </div>
