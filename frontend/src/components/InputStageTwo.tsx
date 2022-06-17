@@ -29,7 +29,7 @@ export default function InputStageTwo({inputValue, setInputValue, type, droppedI
     }
     else if(type === 'Picture'){
         return(
-            <div className="inline-flex items-center justify-between flex-row rounded-lg w-156 h-96 ">
+            <div className="inline-flex items-start justify-between flex-row rounded-lg w-156 h-96 ">
                     <div className="inline-flex flex-col items-start justify-center mt-12">
                         <div className="h-10 max-w-72 w-72 rounded-t-lg bg-blue-500 flex items-center justify-between">
                             <div className="inline-flex flex-row items-center">
@@ -43,16 +43,23 @@ export default function InputStageTwo({inputValue, setInputValue, type, droppedI
                                 <FaEllipsisH className="h-5 w-5 m-2 text-white cursor-pointer"/>
                             </div>
                         </div>
-                        <div className="w-72 h-72 max-w-72 max-h-72 overflow-hidden flex items-center justify-center bg-black bg-opacity-90">
-                            <img src={droppedImages[0]} className="object-contain h-72 w-72 overflow-hidden"/>
+                        <div className="w-72 h-72 overflow-hidden flex items-center justify-center bg-black bg-opacity-90">
+                            <img src={droppedImages[0]} className="object-contain min-h-full max-h-full overflow-hidden"/>
                         </div>
-                        <div id="headingholder" className="max-h-24  overflow-y-auto rounded-b-lg bg-blue-500 max-w-72 w-72 break-all ">
+                        <div id='headingholder' className="max-h-16 overflow-y-auto rounded-b-lg bg-blue-500 max-w-72 w-72 break-all ">
                             <div className="m-2 text-white font-semibold overflow-y-hidden">
                                 {heading}
                             </div>
                         </div>
                     </div>
-                <input value={heading} onChange={(e:any)=>heading.length<80&&setHeading(e.target.value)} className="w-72 outline-none rounded-lg h-12 border border-gray-400 border-opacity-70 pl-2" placeholder="Add a heading for your picture"/>
+                <div contentEditable={true} onInput={(e:any)=>{
+                    console.log(e.currentTarget.textContent)
+                    if(e.target.currentTarget.textContent.length < heading.length || heading.length < 80){
+                       setHeading(e.currentTarget.textContent)
+                        }
+                    }} className="w-72 outline-none rounded-lg min-h-fit p-2 mt-12 border border-gray-400 border-opacity-70 pl-2 pr-2" placeholder="Type whatever heading you want!">
+                        {heading}
+                    </div>
             </div>
         )
     }

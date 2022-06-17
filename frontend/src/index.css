@@ -46,23 +46,19 @@
     height: 5px;
 }
 
-#headingholder ::-webkit-scrollbar {
-    height: 5px;
+#headingholder ::-webkit-scrollbar-thumb {
+    background-color: #27272a !important;
+    border-radius: 10px;
+    scrollbar-width: 1px;
+    width: 1px;
+    cursor: pointer;
 }
 
 #headingholder ::-webkit-scrollbar-track {
-    background-color: #001d54;
+    background-color: #2c313a !important;
     scrollbar-width: 1px;
     height: 1px;
     width: 1px;
     cursor: pointer;
     border-bottom-right-radius: 10px;
-}
-
-#editor ::-webkit-scrollbar-thumb {
-    background-color: #06067f;
-    border-radius: 10px;
-    scrollbar-width: 1px;
-    width: 1px;
-    cursor: pointer;
 }
